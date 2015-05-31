@@ -25,6 +25,6 @@ RUN         chmod a+x /usr/local/bin/entry_point && \
             chmod a+x /usr/local/bin/blockchain_bootstrap && \
             chmod a+x /usr/local/bin/docker_config
 
-EXPOSE      80,8332,8333
+EXPOSE      80 8332 8333
 
 CMD ["entry_point"]
