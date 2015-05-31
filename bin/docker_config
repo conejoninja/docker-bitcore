@@ -28,17 +28,18 @@ fi
 
 cat $HOME/.bitcoin/bitcoin.conf
 
+mkdir -p $HOME/.bitcoin/bitcore
 
-if [ ! -e "$HOME/.bitcoin/docker.yml" ]; then
+if [ ! -e "$HOME/.bitcoin/bitcore/docker.yml" ]; then
 
-    echo "Creating $HOME/.bitcoin/docker.yml"
+    echo "Creating $HOME/.bitcoin/bitcore/docker.yml"
 
-    cat <<EOF > $HOME/.bitcoin/docker.yml
+    cat <<EOF > $HOME/.bitcoin/bitcore/docker.yml
 BitcoreHTTP:
   port: 80
   logging: true
   BitcoreNode:
-    LevelUp: ./db
+    LevelUp: $HOME/.bitcoin/bitcore/db
     network: livenet
     NetworkMonitor:
       host: localhost
@@ -54,7 +55,7 @@ EOF
 fi
 
 mkdir -p /opt/bitcore-node/config
-ln -s  $HOME/.bitcoin/docker.yml /opt/bitcore-node/config/docker.yml
+ln -s  $HOME/.bitcoin/bitcore/docker.yml /opt/bitcore-node/config/docker.yml
 cat /opt/bitcore-node/config/docker.yml
 
 

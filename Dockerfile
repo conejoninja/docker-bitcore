@@ -18,9 +18,7 @@ RUN         cd /opt && git clone https://github.com/bitpay/bitcore-node && \
             cd /opt/bitcore-node/ && npm install
 
 
-ADD         ./bin/entry_point /usr/local/bin/entry_point
-ADD         ./bin/blockchain_bootstrap /usr/local/bin/blockchain_bootstrap
-ADD         ./bin/docker_config /usr/local/bin/docker_config
+ADD         ./bin/* /usr/local/bin/
 RUN         chmod a+x /usr/local/bin/entry_point && \
             chmod a+x /usr/local/bin/blockchain_bootstrap && \
             chmod a+x /usr/local/bin/docker_config
