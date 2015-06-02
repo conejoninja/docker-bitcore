@@ -7,13 +7,13 @@ set -ex
 
 DOCKERPASS=$(dd if=/dev/urandom bs=33 count=1 status=none | base64)
 
-if [ ! -e "$HOME/.bitcoin/bitcoin.conf" ]; then
-    mkdir -p $HOME/.bitcoin
+if [ ! -e "/root/.bitcoin/bitcoin.conf" ]; then
+    mkdir -p /root/.bitcoin
 
-    echo "Creating $HOME/.bitcoin/bitcoin.conf"
+    echo "Creating /root/.bitcoin/bitcoin.conf"
 
     # Seed a random password for JSON RPC server
-    cat <<EOF > $HOME/.bitcoin/bitcoin.conf
+    cat <<EOF > /root/.bitcoin/bitcoin.conf
 disablewallet=1
 printtoconsole=1
 rpcuser=bitcoinrpc
@@ -26,20 +26,20 @@ EOF
 
 fi
 
-cat $HOME/.bitcoin/bitcoin.conf
+cat /root/.bitcoin/bitcoin.conf
 
-mkdir -p $HOME/.bitcoin/bitcore
+mkdir -p /root/.bitcoin/bitcore
 
-if [ ! -e "$HOME/.bitcoin/bitcore/docker.yml" ]; then
+if [ ! -e "/root/.bitcoin/bitcore/docker.yml" ]; then
 
-    echo "Creating $HOME/.bitcoin/bitcore/docker.yml"
+    echo "Creating /root/.bitcoin/bitcore/docker.yml"
 
-    cat <<EOF > $HOME/.bitcoin/bitcore/docker.yml
+    cat <<EOF > /root/.bitcoin/bitcore/docker.yml
 BitcoreHTTP:
   port: 80
   logging: true
   BitcoreNode:
-    LevelUp: $HOME/.bitcoin/bitcore/db
+    LevelUp: /root/.bitcoin/bitcore/db
     network: livenet
     NetworkMonitor:
       host: localhost
@@ -55,7 +55,7 @@ EOF
 fi
 
 mkdir -p /opt/bitcore-node/config
-ln -sf  $HOME/.bitcoin/bitcore/docker.yml /opt/bitcore-node/config/docker.yml
+ln -sf  /root/.bitcoin/bitcore/docker.yml /opt/bitcore-node/config/docker.yml
 cat /opt/bitcore-node/config/docker.yml
 
 

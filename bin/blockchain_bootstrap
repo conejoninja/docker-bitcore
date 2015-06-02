@@ -8,8 +8,8 @@ while test $# -gt 0
 do
     case "$1" in
         --gpg-check)
-            aria2c --no-conf --dir=$HOME http://gtf.org/garzik/bitcoin/bootstrap.txt
-            bootstrapTxtPath="$HOME/bootstrap.txt"
+            aria2c --no-conf --dir=/root http://gtf.org/garzik/bitcoin/bootstrap.txt
+            bootstrapTxtPath="/root/bootstrap.txt"
             if [ ! -e "$bootstrapTxtPath" ]; then
                 echo "Couldn't download the bootstrap.txt file"
             fi
@@ -36,10 +36,10 @@ do
     shift
 done
 
-if [ "$forced" = false -a -e "$HOME/.bitcoin/blocks" ] ; then
+if [ "$forced" = false -a -e "/root/.bitcoin/blocks" ] ; then
     echo "It seems you already started downloading blocks. Use the \"--force\" option if you want to download the bootstrap file anyway"
     exit 126
 fi
 
-aria2c --dir=$HOME/.bitcoin --no-conf --file-allocation=none --follow-torrent=mem --listen-port=6881 --dht-listen-port=6882 --seed-time=0 --index-out=1=bootstrap.dat --check-integrity=true $torrent
+aria2c --dir=/root/.bitcoin --no-conf --file-allocation=none --follow-torrent=mem --listen-port=6881 --dht-listen-port=6882 --seed-time=0 --index-out=1=bootstrap.dat --check-integrity=true $torrent
 exit $?

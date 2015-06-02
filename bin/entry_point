@@ -11,8 +11,5 @@ if [ ! -d /bitcoin/.bitcoin/blocks ]; then
 fi
 
 
-exec bitcoind &
-sleep 20
-cd /opt/bitcore-node/ && NODE_ENV=docker npm start
 
 exec supervisord -n
