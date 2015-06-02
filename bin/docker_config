@@ -55,7 +55,7 @@ EOF
 fi
 
 mkdir -p /opt/bitcore-node/config
-ln -s  $HOME/.bitcoin/bitcore/docker.yml /opt/bitcore-node/config/docker.yml
+ln -sf  $HOME/.bitcoin/bitcore/docker.yml /opt/bitcore-node/config/docker.yml
 cat /opt/bitcore-node/config/docker.yml
 
 

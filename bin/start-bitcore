@@ -1,0 +1,3 @@
+#!/bin/bash
+sleep 10
+cd /opt/bitcore-node/ && NODE_ENV=docker npm start

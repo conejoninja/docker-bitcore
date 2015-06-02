@@ -1,6 +1,6 @@
 FROM        ubuntu:trusty
 MAINTAINER  Daniel Esteban <conejo@conejo.me>
-RUN         apt-get update && apt-get install -y build-essential python git wget aria2
+RUN         apt-get update && apt-get install -y supervisor build-essential python git wget aria2
 
 RUN        wget https://bitcoin.org/bin/bitcoin-core-0.10.2/bitcoin-0.10.2-linux64.tar.gz && \
            tar xzf bitcoin-0.10.2-linux64.tar.gz && \
@@ -21,7 +21,11 @@ RUN         cd /opt && git clone https://github.com/bitpay/bitcore-node && \
 ADD         ./bin/* /usr/local/bin/
 RUN         chmod a+x /usr/local/bin/entry_point && \
             chmod a+x /usr/local/bin/blockchain_bootstrap && \
-            chmod a+x /usr/local/bin/docker_config
+            chmod a+x /usr/local/bin/docker_config \
+            chmod a+x /usr/local/bin/start-bitcore \
+            chmod a+x /usr/local/bin/start-bitcoind
+
+ADD         ./supervisor/* /etc/supervisor/conf.d/
 
 EXPOSE      80 8332 8333
 
