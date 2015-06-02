@@ -21,8 +21,8 @@ RUN         cd /opt && git clone https://github.com/bitpay/bitcore-node && \
 ADD         ./bin/* /usr/local/bin/
 RUN         chmod a+x /usr/local/bin/entry_point && \
             chmod a+x /usr/local/bin/blockchain_bootstrap && \
-            chmod a+x /usr/local/bin/docker_config \
-            chmod a+x /usr/local/bin/start-bitcore \
+            chmod a+x /usr/local/bin/docker_config && \
+            chmod a+x /usr/local/bin/start-bitcore && \
             chmod a+x /usr/local/bin/start-bitcoind
 
 ADD         ./supervisor/* /etc/supervisor/conf.d/
