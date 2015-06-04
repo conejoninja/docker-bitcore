@@ -5,7 +5,7 @@ set -ex
 # Generate bitcoin.conf
 docker_config
 
-if [ ! -d /bitcoin/.bitcoin/blocks ]; then
+if [ ! -d /root/.bitcoin/blocks ]; then
     # Download via bittorrent file, fail quietly
    blockchain_bootstrap || true
 fi
